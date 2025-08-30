@@ -3,6 +3,7 @@
 ## Task Description
 
 Library management system crated.
+To run, go to "src\cmake-build-debug" and run "LibraryManagementSystem.exe" (works for Windows Mingw, not tested for other environments)
 
 ### What was built:
 A working console application that manages:
