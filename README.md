@@ -44,7 +44,7 @@ A working console application that manages:
 1. **Working code** that demonstrates the features
 2. **README** with setup instructions
 
-## Example terminal ommands
+## Example terminal Commands
 ```
 unknown_command
 bor
