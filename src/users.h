@@ -8,18 +8,18 @@
 
 
 
-class generic_user {
+class Generic_user {
 public:
 
-    generic_user(string name,string email, int userId) : name_(name), email_(email), userId_(userId) {}
+    Generic_user(string name, string email, int userId) : name_(name), email_(email), userId_(userId) {}
 
-    virtual ~generic_user() = default;
+    virtual ~Generic_user() = default;
 
     size_t getId();
 
     void giveByIsbn(string &isbn);
 
-    void takeBook(book &n_book);
+    void takeBook(Book &n_book);
 
     bool hasBook(string &isbn);
 
@@ -46,11 +46,11 @@ private:
 };
 
 
-class user_student : public generic_user {
+class User_student : public Generic_user {
 public:
-    user_student(string name, string email, int userId) : generic_user(name, email, userId){}
+    User_student(string name, string email, int userId) : Generic_user(name, email, userId){}
 
-    virtual ~user_student() = default;
+    virtual ~User_student() = default;
     virtual int getMaxBooks() {return 3;}
 
 private:
@@ -61,11 +61,11 @@ private:
     virtual float getFinePerDay() {return 0.5;}
 };
 
-class user_guest : public generic_user {
+class User_guest : public Generic_user {
 public:
-    user_guest(string name, string email, int userId) : generic_user(name, email, userId){}
+    User_guest(string name, string email, int userId) : Generic_user(name, email, userId){}
 
-    virtual ~user_guest() = default;
+    virtual ~User_guest() = default;
     virtual int getMaxBooks() {return 1;}
 
 private:
@@ -73,11 +73,11 @@ private:
     virtual float getFinePerDay() {return 0.5;}
 };
 
-class user_faculty : public generic_user {
+class User_faculty : public Generic_user {
 public:
-    user_faculty(string name, string email, int userId) : generic_user(name, email, userId){}
+    User_faculty(string name, string email, int userId) : Generic_user(name, email, userId){}
 
-    virtual ~user_faculty() = default;
+    virtual ~User_faculty() = default;
     virtual int getMaxBooks() {return 10;}
 
 private:
@@ -85,11 +85,11 @@ private:
     virtual float getFinePerDay() {return 0.5;}
 };
 
-class user_none : public generic_user {
+class User_none : public Generic_user {
 public:
-    user_none() : generic_user("", "", 0){}
+    User_none() : Generic_user("", "", 0){}
 
-    virtual ~user_none() = default;
+    virtual ~User_none() = default;
     virtual int getMaxBooks() {throw runtime_error("user null");}
 
 private:

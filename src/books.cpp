@@ -4,18 +4,18 @@
 
 
 
-string book::description() {
+string Book::description() {
     string desc = name_ + " (" + genre_ + "), by " + author_ + ". ISBN: " + isbn_;
     return desc;
 }
 
-void book::borrow(size_t userId){
+void Book::borrow(size_t userId){
     borrowed_at = chrono::steady_clock::now();
     currentUser = userId;
 }
 
 
-bool book::containsQuote(string &s) {
+bool Book::containsQuote(string &s) {
     {
         if (author_.find(s)!=string::npos){
             return true;
@@ -32,14 +32,14 @@ bool book::containsQuote(string &s) {
 
 
 
-bool book::isOverdue(chrono::steady_clock::duration max_dur){
+bool Book::isOverdue(chrono::steady_clock::duration max_dur){
     if (getOverdue(max_dur) > 0s){
         return true;
     }
     return false;
 }
 
-chrono::steady_clock::duration book::getOverdue(chrono::steady_clock::duration max_dur){
+chrono::steady_clock::duration Book::getOverdue(chrono::steady_clock::duration max_dur){
     chrono::steady_clock::duration diff = chrono::steady_clock::now() - (borrowed_at + max_dur);
     if (diff <= 0s){
         return 0s;
@@ -47,19 +47,19 @@ chrono::steady_clock::duration book::getOverdue(chrono::steady_clock::duration m
     return diff;
 }
 
-void book::setUser(size_t n_user){
+void Book::setUser(size_t n_user){
     currentUser = n_user;
 }
 
-size_t book::getUser(){
+size_t Book::getUser(){
     return currentUser;
 }
 
-string book::getIsbn(){
+string Book::getIsbn(){
     return isbn_;
 }
 
-bool book::isFree(){
+bool Book::isFree(){
     return currentUser==0;
 }
 

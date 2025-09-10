@@ -3,13 +3,13 @@
 using namespace std;
 
 
-class book{
+class Book{
 public:
 
-    book(){}
+    Book(){}
 
-    book(const string &n_author, const string &n_name, const string &n_isbn, const string &genre) : author_(n_author),
-    name_(n_name), isbn_(n_isbn), genre_(genre), currentUser(0) {}
+    Book(const string &n_author, const string &n_name, const string &n_isbn, const string &genre) : author_(n_author),
+                                                                                                    name_(n_name), isbn_(n_isbn), genre_(genre), currentUser(0) {}
 
     void borrow(size_t userId);
 

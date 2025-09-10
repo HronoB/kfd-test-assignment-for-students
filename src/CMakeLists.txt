@@ -8,7 +8,7 @@ endif()
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(LibraryManagementSystem main.cpp users.cpp users.h books.h library.cpp library.h helpers.h books.cpp)
+add_executable(LibraryManagementSystem main.cpp users.cpp users.h books.h library.cpp library.h helpers.h books.cpp library_console.h library_console.cpp)
 
 
 

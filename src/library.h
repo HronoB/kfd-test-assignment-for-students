@@ -4,7 +4,7 @@
 #include <memory>
 #include <unordered_map>
 
-class library{
+class Library{
 
 
 private:
@@ -33,21 +33,21 @@ private:
     };
 
     bool allowBorrowingIfFined_;
-    unordered_map<string, book> storage;
+    unordered_map<string, Book> storage;
 
-    vector<shared_ptr<generic_user>> allUsers;
+    vector<shared_ptr<Generic_user>> allUsers;
 
 
 public:
-    library(bool allowBorrowingIfFined) : allowBorrowingIfFined_(allowBorrowingIfFined), allUsers({make_shared<user_none>()}) { }
+    Library(bool allowBorrowingIfFined) : allowBorrowingIfFined_(allowBorrowingIfFined), allUsers({make_shared<User_none>()}) { }
 
     void addBook(string title, string author, string isbn, string genre);
 
-    book &findBook(string isbn);
+    Book &findBook(string isbn);
 
     void removeBook(string isbn);
 
-    vector<book> searchBooks(string request);
+    vector<Book> searchBooks(string request);
 
     size_t registerUser(string name, string email, string role);
 
@@ -62,7 +62,7 @@ public:
 
     size_t registeredUsersCount();
 
-    shared_ptr<generic_user> accessUser(size_t userId);
+    shared_ptr<Generic_user> accessUser(size_t userId);
 
     vector<single_operation> history;
 

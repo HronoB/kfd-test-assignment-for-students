@@ -1,24 +1,24 @@
 #include "library.h"
 #include <stdexcept>
 
-void library::addBook(string title, string author, string isbn, string genre) {
-    storage[isbn] = book(author, title, isbn, genre);
+void Library::addBook(string title, string author, string isbn, string genre) {
+    storage[isbn] = Book(author, title, isbn, genre);
     history.emplace_back("Librarian", storage[isbn].description(), Add);
 }
 
-size_t library::registeredUsersCount() {
+size_t Library::registeredUsersCount() {
     return allUsers.size();
 }
 
-size_t library::registerUser(string name, string email, string role) {
+size_t Library::registerUser(string name, string email, string role) {
 
-    shared_ptr<generic_user> nn = nullptr;
+    shared_ptr<Generic_user> nn = nullptr;
     if (role=="student"){
-        nn = make_shared<user_student>(name, email, registeredUsersCount());
+        nn = make_shared<User_student>(name, email, registeredUsersCount());
     } else if (role=="guest"){
-        nn = make_shared<user_guest>(name, email, registeredUsersCount());
+        nn = make_shared<User_guest>(name, email, registeredUsersCount());
     } else if (role=="faculty"){
-        nn = make_shared<user_faculty>(name, email, registeredUsersCount());
+        nn = make_shared<User_faculty>(name, email, registeredUsersCount());
     }
 
     if (nn == nullptr){
@@ -34,14 +34,14 @@ size_t library::registerUser(string name, string email, string role) {
 
 
 
-book &library::findBook(string isbn){
+Book &Library::findBook(string isbn){
     if (!storage.contains(isbn)){
         throw runtime_error("No book with given isbn exists");
     }
     return storage[isbn];
 }
 
-void library::removeBook(string isbn){
+void Library::removeBook(string isbn){
     if (!storage.contains(isbn)){
         throw runtime_error("No book with given isbn exists");
     }
@@ -53,9 +53,9 @@ void library::removeBook(string isbn){
     storage.erase(isbn);
 }
 
-vector<book> library::searchBooks(string request){
+vector<Book> Library::searchBooks(string request){
 
-    vector<book> res;
+    vector<Book> res;
     for (auto &i : storage){
         if (i.second.isFree() && i.second.containsQuote(request)){
             res.push_back(i.second);
@@ -64,7 +64,7 @@ vector<book> library::searchBooks(string request){
     return res;
 }
 
-float library::returnBook(string isbn){
+float Library::returnBook(string isbn){
     if (!storage.contains(isbn) || storage[isbn].isFree()){
         throw runtime_error("No book with isbn or is already returned");
     }
@@ -76,8 +76,8 @@ float library::returnBook(string isbn){
     return 0.1f*(int)(fine*10+0.999);
 }
 
-void library::borrowBook(size_t userId, string isbn){
-    shared_ptr<generic_user> curr_user = accessUser(userId);
+void Library::borrowBook(size_t userId, string isbn){
+    shared_ptr<Generic_user> curr_user = accessUser(userId);
     if (!storage.contains(isbn)){
         throw runtime_error("No book with such ISBN found");
     }
@@ -98,7 +98,7 @@ void library::borrowBook(size_t userId, string isbn){
 }
 
 
-vector<string> library::getOverdueBooks(size_t user_id){
+vector<string> Library::getOverdueBooks(size_t user_id){
     vector<string> res;
     auto currentUSer = accessUser(user_id);
     for (auto &ib : currentUSer->getHolding()){
@@ -109,7 +109,7 @@ vector<string> library::getOverdueBooks(size_t user_id){
     return res;
 }
 
-vector<string> library::getOverdueBooks(){
+vector<string> Library::getOverdueBooks(){
     vector<string> res;
     for (int i = 0; i < registeredUsersCount(); i++){
         for (string &isb : getOverdueBooks(i)){
@@ -120,7 +120,7 @@ vector<string> library::getOverdueBooks(){
 }
 
 
-shared_ptr<generic_user> library::accessUser(size_t userId){
+shared_ptr<Generic_user> Library::accessUser(size_t userId){
     if (userId >= registeredUsersCount() || userId < 0) {
         throw runtime_error("No user with such ID found");
     }
@@ -128,9 +128,9 @@ shared_ptr<generic_user> library::accessUser(size_t userId){
 }
 
 
-float library::getTotalOverdueFine(size_t user_id) {
+float Library::getTotalOverdueFine(size_t user_id) {
     float totalFine = 0;
-    shared_ptr<generic_user> curr_user = accessUser(user_id);
+    shared_ptr<Generic_user> curr_user = accessUser(user_id);
     for (auto &isb : curr_user->getHolding()){
         totalFine += curr_user->getOverdueFine(storage[isb].getOverdue(curr_user->getMaxTime()));
     }
@@ -140,7 +140,7 @@ float library::getTotalOverdueFine(size_t user_id) {
 
 
 
-string library::single_operation::represent(){
+string Library::single_operation::represent(){
     string res = "";
     const time_t time_formatted = chrono::system_clock::to_time_t(chrono::system_clock::now()+(time-chrono::steady_clock::now()));
     res += "At ";
@@ -167,7 +167,7 @@ string library::single_operation::represent(){
 
 
 
-string library::showLastActions(size_t number) {
+string Library::showLastActions(size_t number) {
     if (number == -1 || number > history.size()){
         number = history.size();
     }

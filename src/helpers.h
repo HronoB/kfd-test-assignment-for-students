@@ -8,7 +8,7 @@ using namespace std;
 
 
 template<typename T>
-void printi(T &&data){
+static void printi(T &&data){
     cout << "{";
     for (auto i : data){
         cout << i << ", ";
@@ -16,7 +16,7 @@ void printi(T &&data){
     cout << "}" << endl;
 }
 
-vector<string> parse(string &ip){
+static vector<string> parseIntoVector(string &ip){
     ip.push_back(' ');
     vector<string> res;
 
