@@ -15,8 +15,6 @@
 class LibraryConsole{
 public:
 
-
-
     LibraryConsole(basic_istream<char> &n_inp, basic_ostream<char> &n_otp);
 
 
@@ -24,9 +22,6 @@ public:
     bool running(){return !finished;}
 
     void doOneIter(Library &lib);
-
-    void handle_command(int com_id, vector<string> &params, Library &currentLibrary);
-
 
 private:
 
@@ -36,6 +31,8 @@ private:
     bool finished = false;
 
     void representCommands();
+    
+    void handle_command(int com_id, vector<string> &params, Library &currentLibrary);
 
     vector<command> allcommands = {{"add", 3, 3, "add (TITLE AUTHOR ISBN) - adds a book to the library", 0},
                                    {"remove", 1, 1, "remove (ISBN) - removes a book from the library", 1},
