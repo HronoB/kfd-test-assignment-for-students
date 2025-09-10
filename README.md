@@ -1,10 +1,38 @@
 # KFD Test Assignment: Library Management System
 
-## Task Description
+## Description
 
 Library management system created.
 
-To run, go to "src\cmake-build-debug" and run "LibraryManagementSystem.exe" (works for Windows Mingw, not tested for other environments)
+To run, go to "\build" and run "LibraryManagementSystem.exe" (works for Windows Mingw, not tested for other environments)
+
+## Example terminal Commands
+```
+unknown_command
+bor
+ad coolBook pal 712938
+ad redBook gleb 1283091
+ad greenBook somebody 21312
+reg me hoop@gmail.com
+add wrong dev 1831203
+reg him pppppppp@tandex.ru student
+add wrong1 dev 1231111
+add wrong2 dev 1312412313
+add wrong3 dev 123151555
+bor 1 1312412313
+rem 1312412313
+ret 1312412313
+rem 1312412313
+sear omi
+bor 2 1831203
+bor 2 1312412313
+bor 2 123151555
+bor 2 21312
+bor 2 1283091
+history
+his 5
+
+```
 
 ### What was built:
 A working console application that manages:
@@ -43,34 +71,6 @@ A working console application that manages:
 ## Deliverables
 1. **Working code** that demonstrates the features
 2. **README** with setup instructions
-
-## Example terminal Commands
-```
-unknown_command
-bor
-ad coolBook pal 712938
-ad redBook gleb 1283091
-ad greenBook somebody 21312
-reg me hoop@gmail.com
-add wrong dev 1831203
-reg him pppppppp@tandex.ru student
-add wrong1 dev 1231111
-add wrong2 dev 1312412313
-add wrong3 dev 123151555
-bor 1 1312412313
-rem 1312412313
-ret 1312412313
-rem 1312412313
-sear omi
-bor 2 1831203
-bor 2 1312412313
-bor 2 123151555
-bor 2 21312
-bor 2 1283091
-history
-his 5
-
-```
 
 ## Evaluation Notes
 
